@@ -22,8 +22,8 @@
   cursor: pointer;
 }
 
-.filter__checkbox {
-  content: "";
+.filter__checkbox::after {
+  content: '';
   position: absolute;
   background-color: #202020;
   border-radius: 10px;
@@ -50,7 +50,7 @@
   background-color: #fff;
   width: 16px;
   height: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
   border-radius: 10px;
   left: 2px;
   z-index: 1;
