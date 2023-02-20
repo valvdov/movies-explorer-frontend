@@ -39,7 +39,7 @@
   padding-bottom: 19px;
   border-bottom: 1px solid #424242;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
 }
 
 .portfolio__projects-item:hover {
@@ -60,18 +60,18 @@
   color: #fff;
   width: 100%;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
 }
 
 .portfolio__link:hover {
-  opacity: 0.7;
+  opacity: .7;
 }
 
 .portfolio__link::after {
-  content: "";
+  content: '';
   width: 24px;
   height: 18px;
-  background-image: url("../../images/arrow.svg");
+  background-image: url('../../images/arrow.svg');
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;

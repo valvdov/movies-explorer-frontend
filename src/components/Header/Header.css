@@ -25,9 +25,7 @@
 .header__link {
   transition: all .3s ease;
   height: 38px;
-  margin-right: auto;
 }
-
 
 .header__link:hover {
   transform: rotate(45deg);
@@ -45,4 +43,3 @@
     padding: 18px 14px;
   }
 }
-

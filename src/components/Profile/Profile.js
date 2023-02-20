@@ -1,17 +1,29 @@
 import './Profile.css';
-import { useEffect } from 'react';
-import useFormWithValidation from '../../hooks/useFormWithValidation.js';
+import {useEffect, useContext } from 'react';
+import CurrentUserContext from '../../context/CurrentUserContext';
+import useForm from "../../hooks/useForm";
 
-export default function Profile() {
-  const { values, handleChange, resetForm, errors, isValid } = useFormWithValidation();
+export default function Profile({ onSignOut, onUpdateUser }) {
+
+  const currentUser = useContext(CurrentUserContext);
+  const { enteredValues, errors, handleChange, isFormValid, resetForm } = useForm();
+
+  useEffect(() => {
+    if (currentUser) {
+      resetForm(currentUser);
+    }
+  }, [currentUser, resetForm]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    onUpdateUser({
+      name: enteredValues.name,
+      email: enteredValues.email,
+    });
   }
-
-  useEffect(() => {
-    resetForm();
-  }, [resetForm])
+  function handleSignOut() {
+    onSignOut();
+  }
 
   return (
     <main className="profile">
@@ -24,11 +36,11 @@ export default function Profile() {
               name="name"
               className={`profile__input ${errors.name && 'profile__input_error'}`}
               onChange={handleChange}
-              value={values.name || 'Валерий'}
+              value={enteredValues.name || currentUser.name}
               type="text"
               required
-              minLength="2"
-              maxLength="30"
+              minLength={2}
+              maxLength={30}
             />
             <span className="profile__error-name">{errors.name || ''}</span>
           </label>
@@ -38,8 +50,10 @@ export default function Profile() {
               name="email"
               className={`profile__input ${errors.email && 'profile__input_error'}`}
               onChange={handleChange}
-              value={values.email || 'valvdov@yandex.ru'}
+              value={enteredValues.email || currentUser.email}
               type="email"
+              minLength={2}
+              maxLength={200}
               required
             />
             <span className="profile__error">{errors.email || ''}</span>
@@ -49,13 +63,13 @@ export default function Profile() {
           <button
             type="submit"
             className={`profile__button-edit ${
-              !isValid && 'profile__button-edit_disabled'
+              !isFormValid && 'profile__button-edit_disabled'
             }`}
-            disabled={!isValid}
+            disabled={!isFormValid}
           >
             Редактировать
           </button>
-          <button type="submit" className="profile__button-exit">
+          <button type="submit" className="profile__button-exit" onClick={handleSignOut}>
             Выйти из аккаунта
           </button>
         </div>

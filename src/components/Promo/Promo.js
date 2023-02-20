@@ -1,5 +1,6 @@
 import './Promo.css';
 import logo from '../../images/landing-logo.svg';
+import { HashLink as Link } from 'react-router-hash-link';
 
 export default function Promo() {
   return (
@@ -12,11 +13,11 @@ export default function Promo() {
           <p className="promo__description">
             Листайте ниже, чтобы узнать больше про этот проект и его создателя.
           </p>
-          <a href="#" target="_blank" rel="noopener noreferrer" className="promo__learn-more-link" >
+          <Link to="#about" className="promo__learn-more-link" >
           Узнать больше
-          </a>
+          </Link>
         </div>
-        <img src={logo} alt="логотип - Земной шар" className="promo__logo" />
+        <img src={logo} alt="логотип - планета web" className="promo__logo" />
       </div>
     </section>
   );
