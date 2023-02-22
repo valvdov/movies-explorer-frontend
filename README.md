@@ -21,3 +21,5 @@ Movies Explorer - фронтенд дипломного проекта в Янд
 ## Ссылки
 
 - [Макет в Фигме](https://www.figma.com/file/4ScI8kuRnEDvfH4bhiNjGe/Diploma-Valerii?node-id=891%3A3857&t=meAcqoAZwnFLjh2q-1)
+- [Pull Request](https://github.com/valvdov/movies-explorer-frontend/pull/3/)
+- [Ссылка на сайт](https://valvdov.movies.nomoredomains.work)

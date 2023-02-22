@@ -1,19 +1,24 @@
 import './Login.css';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import useFormWithValidation from '../../hooks/useFormWithValidation.js';
+import { useEffect } from "react";
+import useForm from "../../hooks/useForm";
 
-export default function Login() {
-  const { values, handleChange, resetForm, errors, isValid } = useFormWithValidation();
+function Login({ onLogin }) {
+
+  const { enteredValues, errors, handleChange, isFormValid, resetForm } = useForm();
+
+  useEffect(() => {
+    resetForm()
+  }, [resetForm]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    onLogin({
+      email: enteredValues.email,
+      password: enteredValues.password,
+    });
   }
-
-  useEffect(() => {
-    resetForm();
-  }, [resetForm]);
 
   return (
     <main className="login">
@@ -27,33 +32,34 @@ export default function Login() {
             <span className="login__label-text">E-mail</span>
             <input
               name="email"
-              className={`login__input ${errors.email && 'login__input_error'}`}
+              className={errors.email ? 'login__input login__input_error' : `login__input`}
               onChange={handleChange}
-              value={values.email || ''}
+              minLength={2}
+              maxLength={200}
               type="email"
               required
             />
-            <span className="login__error">{errors.email || ''}</span>
+            <span className="login__error">{errors.email}</span>
           </label>
           <label className="login__label">
             <span className="login__label-text">Пароль</span>
             <input
               name="password"
-              className={`login__input ${errors.password && 'login__input_error'}`}
+              className={errors.password ? 'login__input login__input_error' : `login__input`}
               onChange={handleChange}
-              value={values.password || ''}
               type="password"
+              minLength={6}
               required
             />
-            <span className="login__error">{errors.password || ''}</span>
+            <span className="login__error">{errors.password}</span>
           </label>
         </div>
         <button
           type="submit"
           className={`login__button ${
-            !isValid && 'login__button_disabled'
+            !isFormValid && 'login__button_disabled'
           }`}
-          disabled={!isValid}
+          disabled={!isFormValid}
         >
           Войти
         </button>
@@ -67,3 +73,5 @@ export default function Login() {
     </main>
   )
 }
+
+export default Login;

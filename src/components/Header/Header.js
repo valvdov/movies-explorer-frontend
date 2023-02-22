@@ -3,14 +3,14 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation.js';
 import logo from '../../images/logo.svg';
 
-function Header({ themeDark, authorized, onClickBurger, isBurgerOpened }) {
+function Header({ themeDark, loggedIn, onClickBurger, isBurgerOpened }) {
   return (
     <header className={`header header_theme_${themeDark ? 'dark' : 'bright'}`}>
       <div className="header__container">
         <Link to="/" className="header__link">
           <img src={logo} alt="Логотип" />
         </Link>
-        <Navigation authorized={authorized} onClickBurger={onClickBurger} isBurgerOpened={isBurgerOpened} />
+        <Navigation loggedIn={loggedIn} onClickBurger={onClickBurger} isBurgerOpened={isBurgerOpened} />
       </div>
     </header>
   );
